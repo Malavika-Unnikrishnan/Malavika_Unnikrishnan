@@ -1,0 +1,603 @@
+/* === Base Styles === */
+body {
+  margin: 0;
+  background-color: #2e2e2e; /* Unified dark background */
+  font-family: 'Courier New', monospace;
+  color: #fff;
+}
+
+/* === Terminal Container === */
+.terminal-container {
+  width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* === Terminal Header === */
+.terminal-header {
+  position: fixed; /* ✅ Keeps it always on top */
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #3c3c3c;
+  padding: 18px 30px;
+  border-bottom: 1px solid #444;
+  z-index: 1000; /* higher z-index to stay above other elements */
+}
+
+
+.mac-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.red { background-color: #ff5f56; }
+.yellow { background-color: #ffbd2e; }
+.green { background-color: #27c93f; }
+
+/* === Nav Links === */
+.nav-links a {
+  color: #e0e0e0;
+  text-decoration: none;
+  margin-left: 20px;
+  font-weight: bold;
+  transition: color 0.2s ease, border-bottom 0.2s ease;
+  padding-bottom: 2px;
+}
+
+.nav-links a:hover {
+  color: #66ffcc;
+  border-bottom: 2px solid #66ffcc;
+}
+
+/* === About Section === */
+.about-wrapper {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 40px;
+  padding: 40px 40px 40px; /* Changed from 40px to 20px top padding */
+}
+
+
+
+
+.about-container {
+  display: flex;
+  justify-content: center;
+  padding: 40px;
+}
+
+.about-card {
+  display: flex;
+  flex-direction: row;
+  background-color: #1e1e1e;
+  border-radius: 15px;
+  padding: 40px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.137);
+  max-width: 90%;
+  width: 100%;
+  animation: fadeIn 1s ease-in-out;
+  box-sizing: border-box;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.about-left {
+  flex: 1;
+  min-width: 250px;
+  max-width: 550px;
+  margin-top: 50px; /* Added margin-top */
+}
+
+
+.about-left img {
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  border-radius: 16px;
+  object-fit: cover;
+  background-color: #111; /* darker background fallback */
+  box-shadow:
+    0 8px 24px rgba(0, 0, 0, 0.6),  /* stronger base shadow */
+    0 0 0 1px rgba(255, 255, 255, 0.03), /* subtle edge softener */
+    0 0 25px rgba(24, 133, 106, 0.2); /* deeper teal glow */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.about-left img:hover {
+  transform: scale(1.02);
+  box-shadow:
+    0 12px 40px rgba(0, 0, 0, 0.7),
+    0 0 0 2px rgba(0, 128, 96, 0.1),
+    0 0 50px rgba(0, 128, 96, 0.3); /* intense darker glow */
+}
+
+
+
+
+.about-right {
+  margin-left: -10px; /* Reduced from 40px to 25px */
+  flex: 1;
+}
+
+
+.about-label {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  color: #66ffcc;
+}
+
+.about-name {
+  font-size: 2.8rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  line-height: 1.3;
+}
+
+.about-title {
+  font-size: 1.3rem;
+  margin-bottom: 20px;
+}
+
+.about-contact p {
+  font-size: 1.1rem;
+  margin: 6px 0;
+}
+
+.about-contact a {
+  color: #66ffcc;
+  text-decoration: none;
+}
+
+.about-contact a:hover {
+  text-decoration: underline;
+}
+
+/* === Responsive === */
+@media (max-width: 768px) {
+  .about-card {
+    flex-direction: column;
+    position: relative;
+  }
+
+  .about-left {
+    position: relative;
+    height: 300px;
+    max-width: 100%;
+  }
+
+  .about-left img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.4;
+  }
+
+  .about-right {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 20px;
+    z-index: 1;
+    color: white;
+  }
+
+  .about-name {
+    font-size: 20px;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
+  }
+
+  .about-title,
+  .about-contact p,
+  .about-label {
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+  }
+}
+
+
+/* === Resume Overlay === */
+.resume-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: fadeInOverlay 0.3s ease;
+}
+
+.resume-content {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 90vw;
+  max-height: 90vh;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5);
+  animation: slideInPaper 0.5s ease;
+  position: relative;
+}
+
+.resume-content iframe {
+  width: 100%;
+  height: 70vh;
+  border: none;
+}
+
+.download-btn {
+  display: inline-block;
+  margin-top: 15px;
+  padding: 10px 20px;
+  background-color: #27c93f;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.download-btn:hover {
+  background-color: #1da231;
+}
+
+/* Animations */
+@keyframes slideInPaper {
+  from {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInOverlay {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+
+/* === Projects Section === */
+.projects-section {
+  padding: 60px 40px;
+  background-color: #2e2e2e;
+  color: #fff;
+}
+
+.projects-heading {
+  font-size: 2.5rem;
+  color: #66ffcc;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.projects-intro {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto 30px;
+  font-size: 1.1rem;
+  color: #ddd;
+}
+
+.github-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background-color: #3c3c3c;
+  color: #66ffcc;
+  font-weight: bold;
+  padding: 10px 20px;
+  margin: 0 auto 40px;
+  border-radius: 8px;
+  text-decoration: none;
+  border: 1px solid #66ffcc;
+  transition: background-color 0.3s ease;
+  width: fit-content;
+}
+
+.github-btn:hover {
+  background-color: #1e1e1e;
+}
+
+.github-icon {
+  width: 20px;
+  height: 20px;
+  filter: invert(100%);
+}
+
+/* Grid layout */
+.projects-grid {
+display: grid;
+grid-template-columns: repeat(2, 1fr); /* Always 2 columns unless overridden \*/
+gap: 20px;
+}
+
+@media (max-width: 768px) {
+.projects-grid {
+grid-template-columns: 1fr; /\* Stack one card per row on small screens \*/
+}
+}   
+
+
+
+
+/* Project card */
+.project-card {
+  background-color: #1e1e1e;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease;
+}
+
+.project-card:hover {
+  transform: scale(1.015);
+}
+
+.project-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  background-color: #111;
+  object-fit: cover;
+}
+
+.project-card h3 {
+  margin: 10px 0;
+  font-size: 1.5rem;
+  color: #66ffcc;
+}
+
+.project-card p {
+  font-size: 1rem;
+  color: #ccc;
+  margin-bottom: 15px;
+}
+
+/* Tech stack pills */
+.tech-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.tech-stack span {
+  background-color: #333;
+  color: #66ffcc;
+  padding: 5px 10px;
+  font-size: 0.85rem;
+  border-radius: 5px;
+  border: 1px solid #444;
+}
+
+.achievements-section {
+  padding: 60px 40px;
+  background-color: #2e2e2e;
+}
+
+.achievements-heading {
+  font-size: 36px;
+  color: #66ffcc;
+  margin-bottom: 40px;
+  text-align: left;
+  font-family: 'Orbitron', sans-serif;
+}
+
+.achievement-card {
+  display: flex;
+  background-color: #1e1e1e;
+  border-radius: 20px;
+  margin-bottom: 30px;
+  padding: 20px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+.media-box {
+  flex: 1;
+  border-radius: 16px;
+  overflow: hidden;
+  max-width: 250px;
+  height: 180px;
+  position: relative;
+}
+
+.media-box img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: none;
+  border-radius: 16px;
+}
+
+.media-box img.active {
+  display: block;
+}
+
+.achievement-content {
+  flex: 3;
+  padding-left: 20px;
+  color: #ffffff;
+}
+
+.achievement-content h3 {
+  margin-top: 0;
+  color: #66ffcc;
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.achievement-content p {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.logos {
+  margin-top: 10px;
+  display: flex;
+  gap: 10px;
+}
+
+.logos img {
+  height: 30px;
+  width: auto;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .achievement-card {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .achievement-content {
+    padding-left: 0;
+    text-align: center;
+  }
+
+  .media-box {
+    margin-bottom: 15px;
+    max-width: 100%;
+    width: 100%;
+  }
+}
+
+/* Animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  } to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Base styles */
+
+
+/* Section */
+#contact {
+  padding: 80px 20px;
+}
+
+.contact-container {
+  max-width: 1000px;
+  margin: auto;
+  background: #1e1e1e;
+  display: flex;
+  flex-wrap: wrap;
+  border-radius: 16px;
+  box-shadow: 0 0 10px rgba(0, 255, 200, 0.1);
+  overflow: hidden;
+}
+
+/* Left - Info */
+.contact-info {
+  flex: 1 1 300px;
+  padding: 40px;
+  background: #2a2a2a;
+}
+
+.contact-info h2 {
+  color: #66ffcc;
+  margin-bottom: 30px;
+}
+
+.info-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.info-item i {
+  font-size: 20px;
+  margin-right: 15px;
+  color: #66ffcc;
+}
+
+.info-item a {
+  color: #66ffcc;
+  text-decoration: none;
+}
+
+.info-item a:hover {
+  text-decoration: underline;
+}
+
+/* Right - Form */
+.contact-form {
+  flex: 2 1 400px;
+  padding: 40px;
+}
+
+.contact-form h2 {
+  color: #66ffcc;
+  margin-bottom: 30px;
+}
+
+.contact-form label {
+  display: block;
+  margin-top: 15px;
+  font-size: 14px;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  margin-top: 5px;
+  padding: 12px;
+  background: #121212;
+  border: 1px solid #444;
+  color: #fff;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: #66ffcc;
+  outline: none;
+}
+
+.contact-form button {
+  margin-top: 20px;
+  padding: 12px 24px;
+  background: #66ffcc;
+  color: #121212;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.contact-form button:hover {
+  background: #55e6b3;
+}
+
+
+
